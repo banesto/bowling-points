@@ -128,7 +128,7 @@ RSpec.describe Game do
       expect(subject).to be_finished
       expect(subject.frames.size).to eq(10)
       expect(last_frame.is_open_score).not_to be true
-      expect(last_frame.score).to eq(9 * 9 + 10)
+      expect(last_frame.score).to eq(9 * 9 + 10 * 3)
     end
 
     it 'is a spare' do
@@ -138,7 +138,7 @@ RSpec.describe Game do
       expect(subject).to be_finished
       expect(subject.frames.size).to eq(10)
       expect(last_frame.is_open_score).not_to be true
-      expect(last_frame.score).to eq(9 * 9 + 10)
+      expect(last_frame.score).to eq(9 * 9 + 5 * 3)
     end
   end
 end

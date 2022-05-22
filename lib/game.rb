@@ -23,7 +23,7 @@ class Game
   end
 
   def process_frame
-    frame = Frame.new
+    frame = Frame.new(frames.size == FRAME_COUNT - 1)
     while !frame.finished?
       ball = pin_input
       if frame.ball(ball)

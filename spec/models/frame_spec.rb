@@ -224,4 +224,48 @@ RSpec.describe Frame do
       end
     end
   end
+
+  context 'last frame' do
+    subject do
+      frame = described_class.new(true)
+      frame
+    end
+
+    it 'is finished if 2 balls have less than 10 sum' do
+      subject.ball(1)
+      subject.ball(3)
+      expect(subject).to be_finished
+    end
+
+    it 'is not finished if first ball is 10' do
+      subject.ball(10)
+      expect(subject).not_to be_finished
+    end
+
+    it 'is not finished if first 2 ball sum is 10' do
+      subject.ball(2)
+      subject.ball(8)
+      expect(subject).not_to be_finished
+    end
+
+    it 'is not finished if first 2 balls are 10' do
+      subject.ball(10)
+      subject.ball(10)
+      expect(subject).not_to be_finished
+    end
+
+    it 'is finished if 3 balls start with strike' do
+      subject.ball(10)
+      subject.ball(1)
+      subject.ball(8)
+      expect(subject).to be_finished
+    end
+
+    it 'is finished if 3 balls start with spare' do
+      subject.ball(2)
+      subject.ball(8)
+      subject.ball(8)
+      expect(subject).to be_finished
+    end
+  end
 end

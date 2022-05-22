@@ -1,18 +1,19 @@
 class Frame
   @@score = 0
-  attr_accessor :balls, :score, :is_open_score, :bonus_pins
+  attr_accessor :balls, :score, :is_open_score, :bonus_pins, :is_last_frame
 
-  def initialize
+  def initialize(is_last_frame = false)
     self.balls = []
     self.bonus_pins = []
     self.is_open_score = false
     self.score = 0
+    self.is_last_frame = is_last_frame
   end
 
   def ball(pins)
     return unless (0..10).cover?(pins)
     return if finished?
-    return if pins + balls.sum > 10
+    return if pins + balls.sum > 10 && !is_last_frame
 
     self.balls << pins
     self.score += pins
@@ -39,7 +40,11 @@ class Frame
   end
 
   def finished?
-    balls.sum == 10 || balls.size == 2
+    if is_last_frame
+      (balls.size == 2 && balls.sum < 10) || balls.size == 3
+    else
+      balls.sum == 10 || balls.size == 2
+    end
   end
 
   def to_s
