@@ -15,7 +15,7 @@ RSpec.describe Game do
 
   context 'non-empty game' do
     subject do
-      game = described_class.new
+      game = described_class.new(false)
       frame1 = Frame.new
       frame1.ball(7)
       frame1.ball(2)
@@ -37,7 +37,7 @@ RSpec.describe Game do
 
   context 'finished game' do
     subject do
-      game = described_class.new
+      game = described_class.new(false)
       10.times do
         frame = Frame.new
         frame.ball(7)
@@ -57,7 +57,7 @@ RSpec.describe Game do
 
   context 'strike' do
     subject do
-      game = described_class.new
+      game = described_class.new(false)
       @frame = Frame.new
       @frame.ball(10)
       @frame.simple_score
@@ -84,7 +84,7 @@ RSpec.describe Game do
 
   context 'spare' do
     subject do
-      game = described_class.new
+      game = described_class.new(false)
       @frame = Frame.new
       @frame.ball(2)
       @frame.ball(8)
@@ -110,7 +110,7 @@ RSpec.describe Game do
 
   context 'last frame' do
     subject do
-      game = described_class.new
+      game = described_class.new(false)
       9.times do
         frame = Frame.new
         frame.ball(7)

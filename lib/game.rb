@@ -3,19 +3,20 @@ require_relative 'frame.rb'
 class Game
   FRAME_COUNT = 10.freeze
   @@frame = 1
-  attr_accessor :frames
+  attr_accessor :frames, :verbose
 
-  def initialize
+  def initialize(verbose = true)
     self.frames = []
+    self.verbose = verbose
   end
 
   def play
     return if finished?
 
-    puts "FRAME: #{@@frame}"
+    puts "FRAME: #{@@frame}" if verbose
     frame = process_frame
-    puts frame
-    puts
+    puts frame if verbose
+    puts() if verbose
 
     frames << frame
     @@frame += 1
